@@ -1,26 +1,70 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <Sidenav
+    :custom_class="color"
+    :class="[isRTL ? 'fixed-end' : 'fixed-start']"
+    v-if="showSidenav"
+  />
+  <main
+    class="main-content position-relative max-height-vh-100 h-100 overflow-x-hidden"
+  >
+    <!-- nav -->
+    <navbar
+      :class="[isNavFixed ? navbarFixed : '', isAbsolute ? absolute : '']"
+      :color="isAbsolute ? 'text-white opacity-8' : ''"
+      :minNav="navbarMinimize"
+      v-if="showNavbar"
+    />
+    <router-view />
+    <app-footer v-show="showFooter" />
+    <!-- <configurator
+      :toggle="toggleConfigurator"
+      :class="[showConfig ? 'show' : '', hideConfigButton ? 'd-none' : '']"
+    /> -->
+  </main>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Sidenav from "./components/Sidenav";
+// import Configurator from "@/examples/Configurator.vue";
+import Navbar from "@/components/Navbar.vue";
+import AppFooter from "@/components/Footer.vue";
+import { mapMutations, mapState } from "vuex";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
-</script>
+    Sidenav,
+    // Configurator,
+    Navbar,
+    AppFooter,
+  },
+  methods: {
+    ...mapMutations(["toggleConfigurator", "navbarMinimize"]),
+  },
+  computed: {
+    ...mapState([
+      "isRTL",
+      "color",
+      "isAbsolute",
+      "isNavFixed",
+      "navbarFixed",
+      "absolute",
+      "showSidenav",
+      "showNavbar",
+      "showFooter",
+      // "showConfig",
+      // "hideConfigButton",
+    ]),
+  },
+  // Move to the mounted() hook instead of beforeMount()
+  mounted() {
+    this.$store.state.isTransparent = "bg-transparent";
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+    const sidenav = document.getElementsByClassName("g-sidenav-show")[0];
+
+    if (window.innerWidth > 1200 && sidenav) {
+      sidenav.classList.add("g-sidenav-pinned");
+    }
+  },
+};
+</script>
