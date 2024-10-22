@@ -14,6 +14,7 @@
         ></i>
         <a class="m-0 navbar-brand" href="/">
           <img
+            style="margin-left: 3px;"
             :src="
               sidebarType === 'bg-white' ||
               (sidebarType === 'bg-transparent' && !isDarkMode)
@@ -23,9 +24,6 @@
             class="navbar-brand-img h-100"
             alt="main_logo"
           />
-          <span class="ms-2 font-weight-bold text-white"
-            >Payroll System</span
-          >
         </a>
       </div>
       <hr class="horizontal light mt-0 mb-2" />
@@ -38,8 +36,8 @@
 
   <script>
   import SidenavList from "./SidenavList.vue";
-  import logo from "@/assets/img/logo-ct.png";
-  import logoDark from "@/assets/img/logo-ct-dark.png";
+  import logo from "@/assets/img/Payflo Dark Mode.svg";
+  import logoDark from "@/assets/img/Payflo Light Mode.svg";
   import { mapState } from "vuex";
   
   export default {
