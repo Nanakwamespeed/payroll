@@ -34,25 +34,27 @@ export default {
   },
   data() {
     return {
-      tableColumns: ["name", "Position", "Office", "Age", "Start Date", "Salary"],
+      tableColumns: ["Name", "Employee Id", "Position", "Office", "Age", "Start Date", "Salary"],
       tableRows: [
         {
-          name: "Tiger Nixon",
-          email: "tiger@gmail.com",
-          position: "System Architect",
-          office: "Edinburgh",
-          age: 61,
-          startDate: "2011/04/25",
-          salary: "$320,800"
+            name: "Tiger Nixon",
+            email: "tiger@gmail.com",
+            "employee id": "emp001",
+            position: "System Architect",
+            office: "Edinburgh",
+            age: 61,
+            "start date": "2011/04/25",
+            salary: "$320,800"
         },
         {
-          name: "Garrett Winters",
-          email: "tiger@gmail.com",
-          position: "Accountant",
-          office: "Tokyo",
-          age: 63,
-          startDate: "2011/07/25",
-          salary: "$170,750"
+            name: "Garrett Winters",   
+            email: "tiger@gmail.com",
+            "employee id": "emp002", 
+            position: "Accountant",
+            office: "Tokyo",
+            age: 63,
+            "start date": "2011/07/25",
+            salary: "$170,750"
         }
         // More rows
       ]
